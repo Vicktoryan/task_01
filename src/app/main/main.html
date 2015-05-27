@@ -1,0 +1,90 @@
+<div class="container">
+
+
+	<!-- directive 3 -->
+	<form class="form-inline well">
+		<button type="button" class="btn btn-success" ng-click="bmark.addBookmark()"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add</button>
+		&nbsp;&nbsp;<label>Filter:</label> <input type="text" class="form-control" ng-model="bmark.filter" placeholder="Filter"/>
+		<button type="button" class="btn btn-warning" ng-click="bmark.getBookmarWithFilter()"><span class="glyphicon glyphicon-search"></span></button>
+		<button type="button" class="btn btn-default" ng-click="bmark.filter = '';bmark.getBookmarWithFilter()"><span class="glyphicon glyphicon-remove"></span></button>
+		<button type="button" class="btn btn-info pull-right" ng-click="bmark.showLastEditBookmark()"><span class="glyphicon glyphicon-pencil">&nbsp;</span>Edit last item</button>
+	</form>
+
+
+
+	<div class="row" ng-show="bmark.isEdit">
+		<div class="col-md-4 col-md-offset-2">
+			<!-- directive 1 -->
+			<form class="well">
+				<h4>#{{bmark.newBookmark.id ? bmark.newBookmark.id:' Create new bookmark'}}</h4>
+			  <div class="form-group">
+			    <label>Bookmark URL</label>
+			    <input type="text" class="form-control" ng-model="bmark.newBookmark.url" placeholder="Enter Bookmark URL"/>
+			  </div>
+			  <div class="form-group">
+			    <label>Bookmark Title</label>
+			    <input type="text" class="form-control" ng-model="bmark.newBookmark.title" placeholder="Enter Bookmark Tilte"/>
+			  </div>
+
+			  <div class="form-group">
+			    <label>Tags</label>
+			    <div class="well">
+
+				<!-- СПИСОК ТЕГОВ -->
+					<div class="alert alert-warning" ng-repeat="tag in bmark.newBookmark.tags">
+						<button type="button" class="btn btn-default" ng-click="bmark.deleteTag($index)"><span class="glyphicon glyphicon-remove"></span></button>
+						&nbsp;{{tag}}
+					</div>    	
+				<!-- СПИСОК ТЕГОВ -->
+
+
+			    </div>
+			  </div>
+			  <br>
+
+			<!-- СОХРАНЕНИЕ -->
+			  <button type="button" class="btn btn-success" ng-click="bmark.saveBookmark()">Save</button>
+			<!-- СОХРАНЕНИЕ -->
+
+
+
+			  <button type="button" class="btn btn-default" ng-click="bmark.clearEditForm()">Clear</button>
+			  <button type="button" class="btn btn-default pull-right" ng-click="bmark.isEdit = false">Cancel</button>
+			</form>
+
+		</div>
+		<div class="col-md-5 col-md-offset-1">
+			<!-- directive 2 -->
+			<div class="alert alert-success" ng-repeat="tag in bmark.bookmarksAll | listUnsingTags:bmark.newBookmark">
+				<button type="button" class="btn btn-default" ng-click="bmark.addTag(tag)"><span class="glyphicon glyphicon-plus-sign"></span></button>
+					&nbsp;
+					{{tag.title}}
+			</div>
+		</div>
+	</div>
+
+
+
+  
+
+  <div class="row">
+  	<div class="col-md-5">
+  		
+  		<!-- directive 4 -->
+  		<div class="alert alert-warning" ng-repeat="bookmark in bmark.bookmarks" ng-click="bmark.getListTags(bookmark);">
+
+  		<!-- РЕДАКТИРОВАНИЕ -->
+  			<button class="btn btn-warning" ng-click="bmark.editBookmark($event, bookmark)">Edit</button>
+		<!-- РЕДАКТИРОВАНИЕ -->
+
+  			<button class="btn btn-danger" ng-click="bmark.deleteBookmark($event, bookmark)">Delete</button>
+  			&nbsp;&nbsp;
+  			{{bookmark.title}} ({{bookmark.tags.length}})
+		</div>
+  	</div>
+  	<div class="col-md-7">
+  		<h3>{{bmark.selectedItemText}}</h3>
+  		<div class="alert alert-info" ng-repeat="tag in bmark.tags">{{tag}}</div>
+  	</div>
+  </div>
+</div>
