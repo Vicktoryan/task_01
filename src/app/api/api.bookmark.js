@@ -68,25 +68,22 @@ function apiBookmarkData($filter, $http){
 				data.push(item);
 		});
 
-/**
- * ПОПЫТКА ПРОЛЕЗТЬ НА СТОРОННИЙ СЕРВЕР НЕ УДАЧНО
- * @type {Object}
- */
-            // var sendDataParam = {
-            //     method: 'POST',
-            //     url: 'http://myakauntforyou.comuf.com/action.php',
-            //     headers: {
-            //         'Content-Type': 'application/json; charset=UTF-8'
-            //     }
 
-            // };
-            // sendDataParam.data = {
-            //     act: 'task1',
-            //     method: 'getListBookmark',
-            //     params: {"pageSize": 1, "currentPage": 0}
-            // };
-            // console.log(sendDataParam);
-            // $http(sendDataParam);
+            var sendDataParam = {
+                method: 'POST',
+                url: 'http://myakauntforyou.comuf.com/action.php',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+
+            };
+            sendDataParam.data = {
+                act: 'task1',
+                method: 'getListBookmark',
+                params: {"pageSize": 1, "currentPage": 0}
+            };
+            console.log(sendDataParam);
+            $http(sendDataParam);
 
 
 		return data;
@@ -99,6 +96,17 @@ function apiBookmarkData($filter, $http){
 	 */
 	function getTags(bookmark){
 		var data = bookmark.tags;
+		// if (item !== null)
+		// 	item.tags.forEach(function(id){
+		// 		data.push($filter('filter')(service.data, {id: id}, true));
+		// 	});
+		// else {
+		// 	var nData = $filter('filter')(service.data, {title: title}, true);
+		// 	if (nData.length > 0)
+		// 		nData[0].tags.forEach(function(id){
+		// 			data.push($filter('filter')(service.data, {id: id}));
+		// 		});
+		// }
 		return data;
 	}
 };
