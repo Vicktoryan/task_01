@@ -1,7 +1,13 @@
 'use strict';
 
-angular.module('app', [
-  'mainApp',
+angular.module('task1Application', [
+  'mainApplication',
+  'bookmarkEditFormApplication',
+  'bookmarkDataApplication',
+  'navbarApplication',
+  'bookmarkApplication',
+
+
   'ngAnimate',
   'ngCookies',
   'ngTouch',
@@ -10,15 +16,13 @@ angular.module('app', [
   'ui.router',
   'ui.bootstrap'
 ])
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/:filter',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'bmark'
-      });
+.constant('countShowItemsInPaging', 2)
+.config(function ($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('home', {
+      url: '/:filter',
+      templateUrl: 'app/components/main/main.html'
+    });
 
-    $urlRouterProvider.otherwise('/');
-  })
-;
+  $urlRouterProvider.otherwise('/');
+});

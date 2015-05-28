@@ -18,8 +18,8 @@ module.exports = function(options) {
         quotes: true
       }))
       .pipe($.angularTemplatecache('templateCacheHtml.js', {
-        module: 'app',
-        root: 'app'
+        module: 'task1Application',
+        root: 'task1Application'
       }))
       .pipe(gulp.dest(options.tmp + '/partials/'));
   });
