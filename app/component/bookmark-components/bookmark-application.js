@@ -1,9 +1,11 @@
-angular.module('bookmark-application', []).directive('bookmarkList', function(apiBookmarkData, countShowItemsInPaging, $state){
+angular.module('bookmark-application', []).directive('bookmarkList', function($rootScope, $state){
 	return {
 		scope: true,
-		templateUrl: 'app/component/bookmark-application/bookmark-application.html',
-		replace: true,
+		templateUrl: 'app/component/bookmark-components/bookmark-application.html',
 		link: function($scope, iElm, iAttrs, controller) {
+			$scope.bcd = function(){
+				$rootScope.name = 2;
+			};
 			// $scope.selectedItem = null;
 			// $scope.tags = [];
 			// $scope.selectedItemText = '';
@@ -43,6 +45,30 @@ angular.module('bookmark-application', []).directive('bookmarkList', function(ap
 			// 	$scope.newBookmark = angular.copy(bookmark);
 			// 	$scope.isEdit = true;
 			// }
+		}
+	};
+}).directive('test', function(){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		// scope: {}, // {} = isolate, true = child, false/undefined = no change
+		// controller: function($scope, $element, $attrs, $transclude) {},
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '',
+		// templateUrl: '',
+		// replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+
+		scope: true,
+		templateUrl: 'app/component/bookmark-components/bookmark-form-application.html',
+		link: function($scope, iElm, iAttrs, controller) {
+			$scope.abc = function(){
+
+			};
 		}
 	};
 });

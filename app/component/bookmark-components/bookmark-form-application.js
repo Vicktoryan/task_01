@@ -7,10 +7,10 @@ angular.module('bookmark-form-application', []).filter('listUnsingTags', functio
 		});
 	};
 }).filter('limits', function(){
-		return function(items, start, count){
-			if (!items) return;
-			return items.slice((start-1)*count, start*count);
-		};
+	return function(items, start, count){
+		if (!items) return;
+		return items.slice((start-1)*count, start*count);
+	};
 }).directive('bookmarkEditForm', function(){
 	return {
 		scope: true,

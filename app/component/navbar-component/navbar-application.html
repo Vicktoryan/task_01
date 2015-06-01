@@ -9,9 +9,9 @@
 	<button type="button" class="btn btn-warning" ng-click="getBookmarWithFilter()"><span class="glyphicon glyphicon-search"></span></button>
 	<button type="button" class="btn btn-default" ng-click="filter = '';getBookmarWithFilter()"><span class="glyphicon glyphicon-remove"></span></button>
 
-	<button class="btn pull-right" ng-class="{'btn-danger': $root.showScopeObjects, 'btn-success': !$root.showScopeObjects }" ng-click="hideAllDirectives()">
-				<span class="glyphicon" ng-class="{'glyphicon-remove': $root.showScopeObjects, 'glyphicon-ok': !$root.showScopeObjects }">&nbsp;</span>
-				Show/Hide directives object
+	<button class="btn pull-right" ng-class="{'btn-danger': $root.pavelMorozovShow, 'btn-success': !$root.pavelMorozovShow }" ng-click="hideAllDirectives()">
+				<span class="glyphicon" ng-class="{'glyphicon-remove': $root.pavelMorozovShow, 'glyphicon-ok': !$root.pavelMorozovShow }">&nbsp;</span>
+				Pavel {{$root.pavelMorozovShow ? 'silence' : 'talk'}}
 	</button>
 
 		<!-- ng-disabled="!selectedItem" -->

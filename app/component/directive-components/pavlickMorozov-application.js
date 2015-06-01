@@ -1,20 +1,44 @@
-angular.module('directive-application',[])
-//show-scope-change="name"
-.directive('showScopeChange', function($compile, $rootScope, _rootScopeArray, CREATE_SCOPE_OBJECT){
+/**
+ * Alexandr Kaznacheiskiy
+ * scype: counturyan or alien000@mail.ru
+ *
+ * using
+ *
+ * base angular module should have
+ * angular.module('......', [ 'directive-pavlick-marozov-application' ]
+ * .value('_rootScopeArrayPavelMorozov', [])  - scope object name array
+ * .value('_pavelMorozovShow', false)         - show directive
+ * .constant('PAVLICK_MOROZOV_IS_LIFE', true) - create directive
+ * .run(function($rootScope, _rootScopeArrayPavelMorozov, _pavelMorozovShow){
+ *      $rootScope.pavelMorozovShow = _pavelMorozovShow;
+ *      for(method in $rootScope) _rootScopeArrayPavelMorozov.push(method);
+ * });
+ *
+ * <div pavlick-morozov="name scope"></div>
+ * <{directive name} pavlick-morozov="name scope"></{directive name}>
+ * But directive don't have replace: true, may be you have problem ui.router
+ * if you have show/ hide add
+ * $scope.(name) = function() {
+ *   $rootScope.createPavlickMorozov = !$rootScope.createPavlickMorozov;
+ * };
+ *
+ */
+angular.module('pavlickMorozov-application',[])
+.directive('pavlickMorozov', function($compile, $rootScope, _rootScopeArrayPavelMorozov, PAVLICK_MOROZOV_IS_LIFE){
     return {
         transclude: true,
         scope: true,
         rectric: 'A',
-        templateUrl: 'app/component/directive-components/show-scope-object.html',
+        templateUrl: 'app/component/directive-components/pavlickMorozov.html',
         link: function($scope, iElm, attr){
-            $scope.createDerective = CREATE_SCOPE_OBJECT;
-            if (!CREATE_SCOPE_OBJECT) return;
+            $scope.createDerective = PAVLICK_MOROZOV_IS_LIFE;
+            if (!PAVLICK_MOROZOV_IS_LIFE) return;
 
-            $scope.nameScope = attr.showScopeChange;
+            $scope.nameScope = attr.pavlickMorozov;
             $rootScope.$watch(function() {
                     return new Date().toTimeString();
                 }, function(newValue, oldValue, scope) {
-                $scope.showDirective = $rootScope.showScopeObjects;
+                $scope.pavelMorozovShow = $rootScope.pavelMorozovShow;
             });
 
             $scope.$parent.$watch(
@@ -27,8 +51,15 @@ angular.module('directive-application',[])
                     if (isRootScope){
                         var enableChange = false;
                         for(var rootObjectName in $rootScope) {
-                            if (_rootScopeArray.indexOf(rootObjectName) === -1 && rootObjectName[0] != '$')
-                                changed.push({name : rootObjectName,  type: (typeof $rootScope[rootObjectName])});
+                            if (_rootScopeArrayPavelMorozov.indexOf(rootObjectName) === -1 && rootObjectName[0] != '$'){
+                                var typeOfChange = (typeof $rootScope[rootObjectName]);
+
+                                if (typeOfChange === 'string' || typeOfChange === 'number')
+                                    typeOfChange += ' (' + $rootScope[rootObjectName] +')';
+
+                                changed.push({name : rootObjectName,  type: typeOfChange});
+
+                            }
                         }
                         if (!$scope.countChangeName){
                             $scope.nameScope += ' - SCOPE ROOT';

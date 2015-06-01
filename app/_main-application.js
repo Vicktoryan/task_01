@@ -3,6 +3,9 @@ angular.module('main-application', [
     'component.ajax-error',
     'component.app-version',
 
+
+    'pavlickMorozov-application',
+
     'navbar-application',
 
     'bookmark-form-application',
@@ -10,7 +13,7 @@ angular.module('main-application', [
     'api-bookmark-application',
     'bookmark-application',
 
-    'directive-application',
+
     'main-application.templates',
     'ui.router',
     'ui.bootstrap'
@@ -19,19 +22,15 @@ angular.module('main-application', [
   $stateProvider
     .state('home', {
       url: '/:filter',
-      template: '<main-page></main-page>',//app/main-application.html'
+      template: '<main-page></main-page>',
     });
 
   $urlRouterProvider.otherwise('/');
 })
-
-.constant('COUNT_CAT_FOR_CRAZY_DOG', 2)
-.constant('MAX_COUNT_CLICK_CAT', 5)
-
-.value('_rootScopeArray', [])
-.value('_showScopeObjects', false)
-.constant('CREATE_SCOPE_OBJECT', true)
-.run(function($rootScope, _rootScopeArray, _showScopeObjects){
-	$rootScope.showScopeObjects = _showScopeObjects;
-    for(method in $rootScope) _rootScopeArray.push(method);
+.value('_rootScopeArrayPavelMorozov', [])
+.value('_pavelMorozovShow', false)
+.constant('PAVLICK_MOROZOV_IS_LIFE', true)
+.run(function($rootScope, _rootScopeArrayPavelMorozov, _pavelMorozovShow){
+	$rootScope.pavelMorozovShow = _pavelMorozovShow;
+    for(method in $rootScope) _rootScopeArrayPavelMorozov.push(method);
 });

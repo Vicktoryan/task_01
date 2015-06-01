@@ -1,10 +1,10 @@
 angular.module('navbar-application', []).directive('navbar', function($rootScope, $state){
 	return {
 		scope: true,
-		templateUrl: 'app/component/navbar-component/navbar-component.html',
+		templateUrl: 'app/component/navbar-component/navbar-application.html',
 		link: function($scope, iElm, iAttrs, controller) {
 			$scope.hideAllDirectives = function() {
-                $rootScope.showScopeObjects = !$rootScope.showScopeObjects;
+                $rootScope.pavelMorozovShow = !$rootScope.pavelMorozovShow;
             };
 			// $scope.getBookmarWithFilter = function(){
 			// 	$state.go('home', {filter : $scope.filter});
