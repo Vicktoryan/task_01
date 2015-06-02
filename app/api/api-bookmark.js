@@ -1,30 +1,36 @@
-angular.module('api-bookmark-application', []).factory('apiBookmarkData', function($filter, $http, $filter, countShowItemsInPaging){
-	if (!localStorage.getItem('data') || !localStorage.getItem('data') === '[]'){
+angular.module('api-bookmark-application', []).factory('apiBookmarkData', function($filter, $http, $filter){
+	if (!localStorage.getItem('data') || localStorage.getItem('data').length === 0 || !localStorage.getItem('data') === '[]')
+	{
 		var data = [{
 			id: '1',
 			url: 'abc',
 			title: 'JavaScript',
-			tags: ['Backbone', 'JQuery']
+			tags: ['Backbone', 'JQuery'],
+			customTags: ''
 		}, {
 			id: '2',
 			url: 'abc1',
 			title: 'Backbone',
-			tags: ['JavaScript', 'JQuery']
+			tags: ['JavaScript', 'JQuery'],
+			customTags: ''
 		}, {
 			id: '3',
 			url: 'abc2',
 			title: 'JQuery',
-			tags: ['JavaScript', 'Backbone', 'Library']
+			tags: ['JavaScript', 'Backbone', 'Library'],
+			customTags: ''
 		}, {
 			id: '4',
 			url: 'abc3',
 			title: 'Library',
-			tags: []
+			tags: [],
+			customTags: ''
 		}, {
 			id: '5',
 			url: 'abc4',
 			title: 'Underscore',
-			tags: []
+			tags: [],
+			customTags: ''
 		}];
 		localStorage.setItem('data', JSON.stringify(data));
 	}
@@ -40,13 +46,18 @@ angular.module('api-bookmark-application', []).factory('apiBookmarkData', functi
 		getBookmarkFromFilter : function(filter){
 			var data = [];
 			filter = filter.toLowerCase();
-			service.data.forEach(function(item){
-				if (item.tags.join(' ').toLowerCase().indexOf(filter) > -1) data.push(item);
+			var service = JSON.parse(localStorage.getItem('data'));
+			service.forEach(function(item){
+				if (item.tags.join(' ').toLowerCase().indexOf(filter) > -1 || item.customTags.toLowerCase().indexOf(filter) > -1)
+					data.push(item);
 			});
 			return data;
 		},
 		getTags: function(bookmark){
-			var data = bookmark.tags;
+			var data = {
+				base: bookmark.tags,
+				custom: bookmark.customTags
+			};
 			return data;
 		}
 	};

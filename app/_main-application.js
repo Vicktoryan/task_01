@@ -27,6 +27,9 @@ angular.module('main-application', [
 
   $urlRouterProvider.otherwise('/');
 })
+.constant('countShowItemsInPaging', 2)
+
+
 .value('_rootScopeArrayPavelMorozov', [])
 .value('_pavelMorozovShow', false)
 .constant('PAVLICK_MOROZOV_IS_LIFE', true)

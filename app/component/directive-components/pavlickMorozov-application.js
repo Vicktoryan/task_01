@@ -54,10 +54,16 @@ angular.module('pavlickMorozov-application',[])
                             if (_rootScopeArrayPavelMorozov.indexOf(rootObjectName) === -1 && rootObjectName[0] != '$'){
                                 var typeOfChange = (typeof $rootScope[rootObjectName]);
 
-                                if (typeOfChange === 'string' || typeOfChange === 'number')
-                                    typeOfChange += ' (' + $rootScope[rootObjectName] +')';
+                                // if (typeOfChange === 'function' || typeOfChange === 'number' || typeOfChange === 'boolean'){
+                                //     var valueText = (typeOfChange === 'object') ? angular.json($rootScope[rootObjectName]) : $rootScope[rootObjectName];
+                                //     typeOfChange += ' (' + value  +')';
+                                // }
 
-                                changed.push({name : rootObjectName,  type: typeOfChange});
+                                changed.push({
+                                    name : rootObjectName,
+                                    type: typeOfChange,
+                                    value: JSON.stringify($rootScope[rootObjectName])
+                                });
 
                             }
                         }
@@ -86,11 +92,18 @@ angular.module('pavlickMorozov-application',[])
                                         isParent = true;
                                     };
 
-                                if (typeOfChange === 'string' || typeOfChange === 'number')
-                                    typeOfChange += ' (' + scope[objectName] +')';
+                                // if (typeOfChange !== 'function'){
+                                //     var valueText = (typeOfChange === 'object') ? JSON.stringify(scope[objectName]) : scope[objectName];
+                                //     typeOfChange += ' (' + valueText +')';
+                                // }
 
                                 if (objectName !== '$$transcluded')
-                                    changed.push({name: objectName, type: typeOfChange, isParent: isParent});
+                                    changed.push({
+                                        name: objectName,
+                                        type: typeOfChange,
+                                        value: JSON.stringify(scope[objectName]),
+                                        isParent: isParent
+                                    });
                             }
                         }
                     }

@@ -1,8 +1,8 @@
-<div class="row" pavlick-morozov="Edit form">
+<div class="row" pavlick-morozov="Edit form" ng-show="isEdit">
 	<div class="col-md-6">
 		<h5>Edit form</h5>
 		<form class="well">
-			<!-- <h4>#{{newBookmark.id ? newBookmark.id:' Create new bookmark'}}</h4>
+			<h4>#{{newBookmark.id ? newBookmark.id:' Create new bookmark'}}</h4>
 			<div class="form-group">
 				<label>Bookmark URL</label>
 				<input clear-on-escape type="text" class="form-control" ng-model="newBookmark.url" placeholder="Enter Bookmark URL"/>
@@ -10,6 +10,10 @@
 			<div class="form-group">
 				<label>Bookmark Title</label>
 				<input clear-on-escape type="text" class="form-control" ng-model="newBookmark.title" placeholder="Enter Bookmark Tilte"/>
+			</div>
+			<div class="form-group">
+				<label>Custom tags</label>
+				<input type="text" class="form-control" ng-model="newBookmark.customTags" placeholder="Enter custom tags" />
 			</div>
 			<div class="form-group">
 				<label>Tags</label>
@@ -23,9 +27,9 @@
 			<br>
 			<button type="button" class="btn btn-success" ng-click="saveBookmark()">Save</button>
 			<button type="button" class="btn btn-default" ng-click="clearForm()">Clear</button>
-			<button type="button" class="btn btn-default pull-right" ng-click="isEdit = false">Cancel</button> -->
+			<button type="button" class="btn btn-default pull-right" ng-click="stateEditForm(false)">Cancel</button>
 		</form>
 	</div>
 
-<!-- 		<bookmark-list-tags></bookmark-list-tags> -->
+	<bookmark-list-tags></bookmark-list-tags>
 </div>

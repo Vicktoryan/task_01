@@ -1,19 +1,16 @@
-<div class="form-inline well" show-scope-change="Navbar">
+<div class="form-inline well">
 
 	<button type="button" class="btn btn-info"
 		ng-click="showLastEditBookmark()"
+		ng-disabled="!selectedItem"
 		><span class="glyphicon glyphicon-pencil">&nbsp;</span>Edit last item</button>
 
 	<button type="button" class="btn btn-success" ng-click="createBookmark()"><span class="glyphicon glyphicon-plus-sign">&nbsp;</span>Add</button>
-	&nbsp;&nbsp;<label>Filter:</label> <input type="text" class="form-control" ng-model="filter" placeholder="Filter"/>
+	&nbsp;&nbsp;<label>Filter:</label> <input type="text" class="form-control" ng-model="$root.filter" placeholder="Filter"/>
 	<button type="button" class="btn btn-warning" ng-click="getBookmarWithFilter()"><span class="glyphicon glyphicon-search"></span></button>
-	<button type="button" class="btn btn-default" ng-click="filter = '';getBookmarWithFilter()"><span class="glyphicon glyphicon-remove"></span></button>
+	<button type="button" class="btn btn-default" ng-click="$root.filter = '';getBookmarWithFilter()"><span class="glyphicon glyphicon-remove"></span></button>
 
 	<button class="btn pull-right" ng-class="{'btn-danger': $root.pavelMorozovShow, 'btn-success': !$root.pavelMorozovShow }" ng-click="hideAllDirectives()">
-				<span class="glyphicon" ng-class="{'glyphicon-remove': $root.pavelMorozovShow, 'glyphicon-ok': !$root.pavelMorozovShow }">&nbsp;</span>
-				Pavel {{$root.pavelMorozovShow ? 'silence' : 'talk'}}
+		<span class="glyphicon" ng-class="{'glyphicon-remove': $root.pavelMorozovShow, 'glyphicon-ok': !$root.pavelMorozovShow }">&nbsp;</span>Pavel {{$root.pavelMorozovShow ? 'silence' : 'talk'}}
 	</button>
-
-		<!-- ng-disabled="!selectedItem" -->
-
 </div>
